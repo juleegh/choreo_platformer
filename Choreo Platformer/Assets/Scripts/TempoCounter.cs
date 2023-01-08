@@ -7,6 +7,8 @@ public class TempoCounter : MonoBehaviour
     public static TempoCounter Instance { get { return instance; } }
     private static TempoCounter instance;
 
+    private float currentBeatDelay;
+    private float beatPercentage;
     private bool preBeatFrame;
     private bool postBeatFrame;
     bool firstTime;
@@ -17,7 +19,7 @@ public class TempoCounter : MonoBehaviour
 
     public bool IsOnPreTempo { get { return preBeatFrame; } }
     public bool IsOnPostTempo { get { return postBeatFrame; } }
-    public bool IsOnTempo { get { return IsOnPreTempo || IsOnPostTempo; } }
+    public bool IsOnTempo { get { return InsideAcceptableRange(WorldManager.Instance.GetRequiredTempo()); } }
     public float TempoLength { get { return frequency; } }
 
     [SerializeField] private float frequency;
@@ -31,6 +33,11 @@ public class TempoCounter : MonoBehaviour
     private void Start()
     {
         StartTempoCount();
+    }
+
+    private void FixedUpdate()
+    {
+        currentBeatDelay += Time.fixedDeltaTime;
     }
 
     public void SetTempo(float freq)
@@ -64,19 +71,31 @@ public class TempoCounter : MonoBehaviour
         StartCoroutine(PostTempo());
     }
 
-    private void ClearDelay()
-    {
-        StopAllCoroutines();
-        StartCoroutine(PostTempo());
-    }
-
     private IEnumerator PostTempo()
     {
         yield return preAcceptable;
         preBeatFrame = false;
         postBeatFrame = true;
+        currentBeatDelay = 0f;
         yield return postAcceptable;
         postBeatFrame = false;
         StartCoroutine(PreTempo());
+    }
+
+    private bool InsideAcceptableRange(float target)
+    {
+        float currentPercentage = currentBeatDelay / frequency;
+        if (currentPercentage <= AcceptablePercentage || currentPercentage >= 1 - AcceptablePercentage)
+        {
+            return true;
+        }
+
+        for (float current = target; current < 1; current += target)
+        {
+            if (currentPercentage <= current + frequency * AcceptablePercentage &&  currentPercentage >= current - frequency * AcceptablePercentage)
+                return true;
+        }
+
+        return false;
     }
 }

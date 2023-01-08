@@ -6,22 +6,9 @@ using DG.Tweening;
 public class DanceCharacter : MonoBehaviour
 {
     [SerializeField] private float tempoPercentage;
-    bool hasMoved = false;
 
     private void Update()
     {
-        if (hasMoved)
-        {
-            if (!TempoCounter.Instance.IsOnTempo)
-            {
-                hasMoved = false;
-            }
-            else
-            {
-                return;
-            }
-        }
-        
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             TryToMove(Vector3Int.forward);
@@ -50,6 +37,5 @@ public class DanceCharacter : MonoBehaviour
         {
             transform.DOShakePosition(TempoCounter.Instance.TempoLength * tempoPercentage, 0.15f);
         }
-        hasMoved = true;
     }
 }

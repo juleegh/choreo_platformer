@@ -6,6 +6,13 @@ using DG.Tweening;
 public class DanceCharacter : MonoBehaviour
 {
     [SerializeField] private float tempoPercentage;
+    private Vector3 previousPosition;
+    private HealthSystem healthSystem;
+
+    private void Awake()
+    {
+        healthSystem = GetComponent<HealthSystem>();
+    }
 
     private void Update()
     {
@@ -31,11 +38,23 @@ public class DanceCharacter : MonoBehaviour
     {
         if (TempoCounter.Instance.IsOnTempo)
         {
-            transform.DOMove(transform.position + direction, TempoCounter.Instance.TempoLength * tempoPercentage);
+            transform.DOMove(transform.position + direction, TempoCounter.Instance.TempoLength * tempoPercentage).OnComplete(() => { previousPosition = transform.position; });
         }
         else
         {
             transform.DOShakePosition(TempoCounter.Instance.TempoLength * tempoPercentage, 0.15f);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Enemy enemy = other.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            DOTween.KillAll();
+            transform.DOMove(previousPosition, TempoCounter.Instance.TempoLength * tempoPercentage).OnComplete(() => { previousPosition = transform.position; });
+            healthSystem.GetHit();
+            //transform.DOShakePosition(TempoCounter.Instance.TempoLength * tempoPercentage, 0.15f);
         }
     }
 }

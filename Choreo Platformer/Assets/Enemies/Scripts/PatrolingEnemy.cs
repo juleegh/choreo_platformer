@@ -15,7 +15,7 @@ public class PatrolingEnemy : Enemy
     {
         if (movedInTempo)
         {
-            if (!TempoCounter.Instance.IsOnTempo)
+            if (!TempoCounter.Instance.IsOnPostTempo)
             {
                 movedInTempo = false;
             }
@@ -25,7 +25,7 @@ public class PatrolingEnemy : Enemy
             }
         }
 
-        if (TempoCounter.Instance.IsOnTempo)
+        if (TempoCounter.Instance.IsOnPostTempo)
         {
             TryToMove();
         }

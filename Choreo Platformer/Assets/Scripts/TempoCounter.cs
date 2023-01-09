@@ -8,7 +8,6 @@ public class TempoCounter : MonoBehaviour
     private static TempoCounter instance;
 
     private float currentBeatDelay;
-    private float beatPercentage;
     private bool preBeatFrame;
     private bool postBeatFrame;
     bool firstTime;
@@ -38,11 +37,6 @@ public class TempoCounter : MonoBehaviour
     private void FixedUpdate()
     {
         currentBeatDelay += Time.fixedDeltaTime;
-    }
-
-    public void SetTempo(float freq)
-    {
-        frequency = freq;
     }
 
     public void StartTempoCount()

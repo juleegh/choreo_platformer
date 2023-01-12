@@ -11,6 +11,7 @@ public class TempoCounter : MonoBehaviour
     private bool preBeatFrame;
     private bool postBeatFrame;
     bool firstTime;
+    private float characterStamina;
 
     WaitForSeconds unaceptable;
     WaitForSeconds preAcceptable;
@@ -71,6 +72,7 @@ public class TempoCounter : MonoBehaviour
         preBeatFrame = false;
         postBeatFrame = true;
         currentBeatDelay = 0f;
+        characterStamina = 1;
         yield return postAcceptable;
         postBeatFrame = false;
         StartCoroutine(PreTempo());
@@ -78,16 +80,25 @@ public class TempoCounter : MonoBehaviour
 
     private bool InsideAcceptableRange(float target)
     {
+        if (characterStamina <= 0)
+        {
+            return false;
+        }
+
         float currentPercentage = currentBeatDelay / frequency;
         if (currentPercentage <= AcceptablePercentage || currentPercentage >= 1 - AcceptablePercentage)
         {
+            characterStamina -= target;
             return true;
         }
 
         for (float current = target; current < 1; current += target)
         {
-            if (currentPercentage <= current + frequency * AcceptablePercentage &&  currentPercentage >= current - frequency * AcceptablePercentage)
+            if (currentPercentage <= current + frequency * AcceptablePercentage && currentPercentage >= current - frequency * AcceptablePercentage)
+            { 
+                characterStamina -= target;
                 return true;
+            }
         }
 
         return false;

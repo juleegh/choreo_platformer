@@ -38,6 +38,11 @@ public class DanceCharacter : MonoBehaviour
 
     private void TryToMove(Vector3Int direction)
     {
+        if (currentMovement != null && currentMovement.active && !currentMovement.IsComplete())
+        {
+            return;
+        }
+
         if (TempoCounter.Instance.IsOnTempo)
         {
             currentMovement = transform.DOMove(transform.position + direction, TempoCounter.Instance.TempoLength * tempoPercentage).OnComplete(() => CheckDeath());

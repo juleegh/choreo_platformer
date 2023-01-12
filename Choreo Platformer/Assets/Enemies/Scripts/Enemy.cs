@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        DoFrameActions();
+    }
+
+    protected virtual void DoFrameActions()
+    { 
+        CheckForObstacle();
+    }
+
+    private void CheckForObstacle()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position + Vector3.up * 0.5f, -transform.forward, out hit, 0.52f))
+        {
+            DanceCharacter character = hit.transform.GetComponent<DanceCharacter>();
+            if (character != null)
+            {
+                character.GetHit(this);
+            }
+        }
     }
 }

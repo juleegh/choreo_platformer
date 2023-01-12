@@ -40,7 +40,7 @@ public class WorldManager : MonoBehaviour
         }
     }
 
-    private Vector3Int FixedPosition(Vector3 position)
+    public Vector3Int FixedPosition(Vector3 position)
     {
         return new Vector3Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y), Mathf.RoundToInt(position.z));
     }

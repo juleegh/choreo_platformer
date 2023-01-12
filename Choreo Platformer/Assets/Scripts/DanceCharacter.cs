@@ -6,12 +6,14 @@ using DG.Tweening;
 public class DanceCharacter : MonoBehaviour
 {
     [SerializeField] private float tempoPercentage;
-    private Vector3 previousPosition;
     private HealthSystem healthSystem;
+    private Collider bodyCollider;
+    private Tween currentMovement;
 
     private void Awake()
     {
         healthSystem = GetComponent<HealthSystem>();
+        bodyCollider = GetComponent<Collider>();
     }
 
     private void Update()
@@ -38,23 +40,25 @@ public class DanceCharacter : MonoBehaviour
     {
         if (TempoCounter.Instance.IsOnTempo)
         {
-            transform.DOMove(transform.position + direction, TempoCounter.Instance.TempoLength * tempoPercentage).OnComplete(() => { previousPosition = transform.position; });
+            currentMovement = transform.DOMove(transform.position + direction, TempoCounter.Instance.TempoLength * tempoPercentage);
         }
         else
         {
-            transform.DOShakePosition(TempoCounter.Instance.TempoLength * tempoPercentage, 0.15f);
+            currentMovement = transform.DOShakePosition(TempoCounter.Instance.TempoLength * tempoPercentage, 0.15f);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void GetHit(Enemy enemy)
     {
-        Enemy enemy = other.GetComponent<Enemy>();
-        if (enemy != null)
+        if (currentMovement != null)
         {
-            DOTween.KillAll();
-            transform.DOMove(previousPosition, TempoCounter.Instance.TempoLength * tempoPercentage).OnComplete(() => { previousPosition = transform.position; });
-            healthSystem.GetHit();
-            //transform.DOShakePosition(TempoCounter.Instance.TempoLength * tempoPercentage, 0.15f);
+            currentMovement.Kill();
         }
+
+        bodyCollider.enabled = false;
+        Vector3 direction = transform.position - enemy.transform.position;
+        Vector3 position = WorldManager.Instance.FixedPosition(transform.position + direction);
+        currentMovement = transform.DOMove(position, TempoCounter.Instance.TempoLength * tempoPercentage).OnComplete(() => bodyCollider.enabled = true);
+        healthSystem.GetHit();
     }
 }

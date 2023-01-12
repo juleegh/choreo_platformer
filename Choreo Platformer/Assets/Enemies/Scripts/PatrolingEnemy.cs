@@ -11,8 +11,10 @@ public class PatrolingEnemy : Enemy
     private int directionIndex;
     private bool movedInTempo;
 
-    private void Update()
+    protected override void DoFrameActions()
     {
+        base.DoFrameActions();
+
         if (movedInTempo)
         {
             if (!TempoCounter.Instance.IsOnPostTempo)

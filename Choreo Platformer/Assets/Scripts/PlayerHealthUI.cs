@@ -11,7 +11,7 @@ public class PlayerHealthUI : MonoBehaviour
 
     private void Start()
     {
-        healthSystem.HealthDecreased = UpdateHealth;    
+        healthSystem.HealthUpdated = UpdateHealth;    
     }
 
     private void UpdateHealth()

@@ -40,7 +40,7 @@ public class DanceCharacter : MonoBehaviour
     {
         if (TempoCounter.Instance.IsOnTempo)
         {
-            currentMovement = transform.DOMove(transform.position + direction, TempoCounter.Instance.TempoLength * tempoPercentage);
+            currentMovement = transform.DOMove(transform.position + direction, TempoCounter.Instance.TempoLength * tempoPercentage).OnComplete(() => CheckDeath());
         }
         else
         {
@@ -58,7 +58,26 @@ public class DanceCharacter : MonoBehaviour
         bodyCollider.enabled = false;
         Vector3 direction = transform.position - origin;
         Vector3 position = WorldManager.Instance.FixedPosition(transform.position + direction);
-        currentMovement = transform.DOMove(position, TempoCounter.Instance.TempoLength * tempoPercentage).OnComplete(() => bodyCollider.enabled = true);
+        currentMovement = transform.DOMove(position, TempoCounter.Instance.TempoLength * tempoPercentage).OnComplete(() => ProcessHit());
         healthSystem.GetHit();
+    }
+
+    private void ProcessHit()
+    {
+        bodyCollider.enabled = true;
+        healthSystem.GetHit();
+        CheckDeath();
+    }
+
+    private void CheckDeath()
+    {
+        if (!WorldManager.Instance.PositionExists(transform.position))
+        {
+            currentMovement = transform.DOMove(transform.position + Vector3.down * 3, 1).SetEase(Ease.InQuad).OnComplete(() => SpawnManager.Instance.Respawn());
+        }
+        else if (healthSystem.HasDied())
+        {
+            SpawnManager.Instance.Respawn();
+        }
     }
 }

@@ -8,7 +8,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private int maxHealth;
 
     private int currentHealth;
-    public Action HealthDecreased;
+    public Action HealthUpdated;
 
     public int CurrentHealth {  get { return currentHealth; } }
     public int MaxHealth {  get { return maxHealth; } }
@@ -21,9 +21,23 @@ public class HealthSystem : MonoBehaviour
     public void GetHit()
     {
         currentHealth--;
-        if (HealthDecreased != null)
+        if (HealthUpdated != null)
         {
-            HealthDecreased();
+            HealthUpdated();
         }
+    }
+
+    public void Restart()
+    { 
+        currentHealth = maxHealth;
+        if (HealthUpdated != null)
+        {
+            HealthUpdated();
+        }
+    }
+
+    public bool HasDied()
+    {
+        return currentHealth <= 0;
     }
 }

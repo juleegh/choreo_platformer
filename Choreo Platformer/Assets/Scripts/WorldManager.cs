@@ -44,4 +44,9 @@ public class WorldManager : MonoBehaviour
     {
         return new Vector3Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y), Mathf.RoundToInt(position.z));
     }
+
+    public bool PositionExists(Vector3 position)
+    {
+        return board.ContainsKey(FixedPosition(position));
+    }
 }

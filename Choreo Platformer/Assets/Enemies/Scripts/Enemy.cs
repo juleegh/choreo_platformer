@@ -11,19 +11,43 @@ public class Enemy : MonoBehaviour
 
     protected virtual void DoFrameActions()
     { 
-        CheckForObstacle();
+        CheckForObstacle(transform.position + Vector3.up * 0.5f);
     }
 
-    private void CheckForObstacle()
+    protected void CheckForObstacle(Vector3 center)
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position + Vector3.up * 0.5f, -transform.forward, out hit, 0.52f))
+        if (Physics.Raycast(center, transform.forward, out hit, 0.52f))
         {
             DanceCharacter character = hit.transform.GetComponent<DanceCharacter>();
             if (character != null)
             {
-                character.GetHit(this);
+                character.GetHit(center);
+            }
+        }
+        else if (Physics.Raycast(center, -transform.forward, out hit, 0.52f))
+        {
+            DanceCharacter character = hit.transform.GetComponent<DanceCharacter>();
+            if (character != null)
+            {
+                character.GetHit(center);
+            }
+        }
+        else if (Physics.Raycast(center, transform.right, out hit, 0.52f))
+        {
+            DanceCharacter character = hit.transform.GetComponent<DanceCharacter>();
+            if (character != null)
+            {
+                character.GetHit(center);
+            }
+        }
+        else if (Physics.Raycast(center, -transform.right, out hit, 0.52f))
+        {
+            DanceCharacter character = hit.transform.GetComponent<DanceCharacter>();
+            if (character != null)
+            {
+                character.GetHit(center);
             }
         }
     }

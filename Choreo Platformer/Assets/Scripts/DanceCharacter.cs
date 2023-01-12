@@ -48,7 +48,7 @@ public class DanceCharacter : MonoBehaviour
         }
     }
 
-    public void GetHit(Enemy enemy)
+    public void GetHit(Vector3 origin)
     {
         if (currentMovement != null)
         {
@@ -56,7 +56,7 @@ public class DanceCharacter : MonoBehaviour
         }
 
         bodyCollider.enabled = false;
-        Vector3 direction = transform.position - enemy.transform.position;
+        Vector3 direction = transform.position - origin;
         Vector3 position = WorldManager.Instance.FixedPosition(transform.position + direction);
         currentMovement = transform.DOMove(position, TempoCounter.Instance.TempoLength * tempoPercentage).OnComplete(() => bodyCollider.enabled = true);
         healthSystem.GetHit();

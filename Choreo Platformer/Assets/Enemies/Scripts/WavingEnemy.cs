@@ -11,11 +11,22 @@ public class WavingEnemy : Enemy
 
     private int rotationIndex;
     private bool movedInTempo;
+    private Tween currentMovement;
+
+    private void Awake()
+    {
+        rotationIndex = -1;
+    }
 
     protected override void DoFrameActions()
     {
         base.DoFrameActions();
-        CheckForObstacle(prop.position);
+
+        bool isMoving = currentMovement != null && currentMovement.active && !currentMovement.IsComplete();
+        if (!isMoving)
+        { 
+            CheckForObstacle(prop.position);
+        }
         
         if (movedInTempo)
         {
@@ -41,7 +52,7 @@ public class WavingEnemy : Enemy
         if (rotationIndex >= rotations.Count)
             rotationIndex = 0;
 
-        transform.DORotate(rotations[rotationIndex], TempoCounter.Instance.TempoLength * tempoPercentage);
+        currentMovement = transform.DORotate(rotations[rotationIndex], TempoCounter.Instance.TempoLength * tempoPercentage);
         movedInTempo = true;
     }
 }

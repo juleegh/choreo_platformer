@@ -11,6 +11,11 @@ public class PatrolingEnemy : Enemy
     private int directionIndex;
     private bool movedInTempo;
 
+    private void Awake()
+    {
+        directionIndex = -1;
+    }
+
     protected override void DoFrameActions()
     {
         base.DoFrameActions();

@@ -2555,7 +2555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frequency: 0.4688
-  AcceptablePercentage: 0.33
+  AcceptablePercentage: 0.35
 --- !u!4 &1184160726
 Transform:
   m_ObjectHideFlags: 0

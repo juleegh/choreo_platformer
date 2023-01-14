@@ -1,25 +1,13 @@
 fileFormatVersion: 2
-guid: e80958a6053e1094aabe1f41d347ce3e
+guid: efd08924f14fb8346b483ee36e2f7a18
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6377739907931929317
-    second: music_shapes_0
+      213: -3127448798928283936
+    second: notes_0
   - first:
-      213: -2086547421020201182
-    second: music_shapes_1
-  - first:
-      213: 2931179432178911882
-    second: music_shapes_2
-  - first:
-      213: -3844867649347853136
-    second: music_shapes_3
-  - first:
-      213: 6229960808720460005
-    second: music_shapes_4
-  - first:
-      213: 3679474100517228886
-    second: music_shapes_5
+      213: -1649669319220892291
+    second: notes_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -133,127 +121,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: music_shapes_0
+      name: notes_0
       rect:
         serializedVersion: 2
-        x: 50
-        y: 391
-        width: 68
-        height: 91
+        x: 57
+        y: 377
+        width: 55
+        height: 90
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ea7d12d7a8428850800000000000000
-      internalID: 6377739907931929317
+      spriteID: 0e658a623e11994d0800000000000000
+      internalID: -3127448798928283936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: music_shapes_1
+      name: notes_1
       rect:
         serializedVersion: 2
-        x: 134
-        y: 393
-        width: 70
-        height: 91
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 22f5513fc281b03e0800000000000000
-      internalID: -2086547421020201182
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: music_shapes_2
-      rect:
-        serializedVersion: 2
-        x: 227
-        y: 389
-        width: 85
-        height: 99
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a8a84fbd924ada820800000000000000
-      internalID: 2931179432178911882
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: music_shapes_3
-      rect:
-        serializedVersion: 2
-        x: 321
-        y: 388
+        x: 229
+        y: 379
         width: 81
-        height: 100
+        height: 93
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b4ea307e3944aac0800000000000000
-      internalID: -3844867649347853136
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: music_shapes_4
-      rect:
-        serializedVersion: 2
-        x: 413
-        y: 388
-        width: 68
-        height: 99
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5e863680954457650800000000000000
-      internalID: 6229960808720460005
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: music_shapes_5
-      rect:
-        serializedVersion: 2
-        x: 504
-        y: 390
-        width: 68
-        height: 97
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6515491233e101330800000000000000
-      internalID: 3679474100517228886
+      spriteID: d7d6af69e723b19e0800000000000000
+      internalID: -1649669319220892291
       vertices: []
       indices: 
       edges: []
@@ -261,7 +165,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 2c70cae78545324438629dfdcc47fcd0
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

@@ -10,7 +10,6 @@ public class TempoCounter : MonoBehaviour
     private float currentBeatDelay;
     private bool preBeatFrame;
     private bool postBeatFrame;
-    bool firstTime;
 
     WaitForSeconds unaceptable;
     WaitForSeconds preAcceptable;
@@ -20,6 +19,7 @@ public class TempoCounter : MonoBehaviour
     public bool IsOnPostTempo { get { return postBeatFrame; } }
     public bool IsOnTempo { get { return InsideAcceptableRange(WorldManager.Instance.GetRequiredTempo()); } }
     public float TempoLength { get { return frequency; } }
+    public float CurrentBeatPercentage {  get { return currentBeatDelay / frequency; } }
 
     [SerializeField] private float frequency;
     [SerializeField] private float AcceptablePercentage;
@@ -41,11 +41,10 @@ public class TempoCounter : MonoBehaviour
 
     public void StartTempoCount()
     {
-        firstTime = true;
         unaceptable = new WaitForSeconds(frequency * (1 - AcceptablePercentage));
-        preAcceptable = new WaitForSeconds(frequency * AcceptablePercentage * 0.75f);
-        postAcceptable = new WaitForSeconds(frequency * AcceptablePercentage * 0.25f);
-        StartCoroutine(PreTempo());
+        preAcceptable = new WaitForSeconds(frequency * AcceptablePercentage * 0.60f);
+        postAcceptable = new WaitForSeconds(frequency * AcceptablePercentage * 0.40f);
+        StartCoroutine(FirstTempoCount());
     }
 
     public void StopTempoCount()
@@ -53,40 +52,36 @@ public class TempoCounter : MonoBehaviour
         StopAllCoroutines();
     }
 
-    private IEnumerator PreTempo()
+    private IEnumerator FirstTempoCount()
     {
-        if (firstTime)
-        {
-            yield return postAcceptable;
-            firstTime = false;
-        }
+        yield return postAcceptable;
+        postBeatFrame = false;
+        StartCoroutine(TempoCount());
+    }
+    
+    private IEnumerator TempoCount()
+    {
         yield return unaceptable;
         preBeatFrame = true;
-        StartCoroutine(PostTempo());
-    }
-
-    private IEnumerator PostTempo()
-    {
-        yield return preAcceptable;
+         yield return preAcceptable;
         preBeatFrame = false;
         postBeatFrame = true;
         currentBeatDelay = 0f;
         yield return postAcceptable;
         postBeatFrame = false;
-        StartCoroutine(PreTempo());
+        StartCoroutine(TempoCount());
     }
 
-    private bool InsideAcceptableRange(float target)
+    public bool InsideAcceptableRange(float target)
     {
-        float currentPercentage = currentBeatDelay / frequency;
-        if (currentPercentage <= AcceptablePercentage || currentPercentage >= 1 - AcceptablePercentage)
+        if (CurrentBeatPercentage <= AcceptablePercentage || CurrentBeatPercentage >= 1 - AcceptablePercentage)
         {
             return true;
         }
 
         for (float current = target; current < 1; current += target)
         {
-            if (currentPercentage <= current + frequency * AcceptablePercentage && currentPercentage >= current - frequency * AcceptablePercentage)
+            if (CurrentBeatPercentage <= current + frequency * AcceptablePercentage && CurrentBeatPercentage >= current - frequency * AcceptablePercentage)
             { 
                 return true;
             }

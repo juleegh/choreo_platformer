@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class WorldCell : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private CellType cellType;
     [SerializeField] private CellProperties cellProperties;
+    [SerializeField] private CellVisuals visuals;
 
     public void Paint()
     {
-        spriteRenderer.sprite = cellProperties.CellSprites[cellType];  
+        if (visuals != null)
+        { 
+            visuals.Paint(cellType);
+        }
+    }
+
+    private void Start()
+    {
+        if (visuals != null)
+        {
+            visuals.SetupNote(cellType);
+        }
     }
 
     public float RequiredTempo

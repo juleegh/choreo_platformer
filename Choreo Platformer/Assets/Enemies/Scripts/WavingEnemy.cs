@@ -6,7 +6,6 @@ using DG.Tweening;
 public class WavingEnemy : Enemy
 {
     [SerializeField] private List<Vector3Int> rotations;
-    [SerializeField] private Transform prop;
     [SerializeField] private float tempoPercentage = 0.15f;
 
     private int rotationIndex;
@@ -25,7 +24,7 @@ public class WavingEnemy : Enemy
         bool isMoving = currentMovement != null && currentMovement.active && !currentMovement.IsComplete();
         if (!isMoving)
         { 
-            CheckForObstacle(prop.position);
+            CheckForObstacle(transform.position + Vector3.up * 0.5f, transform.forward, 1f);
         }
         
         if (movedInTempo)

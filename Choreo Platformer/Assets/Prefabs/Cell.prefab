@@ -174,6 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2965659806430631500}
   - component: {fileID: 2965659806430631501}
+  - component: {fileID: 5583521808476364725}
   m_Layer: 0
   m_Name: Cell
   m_TagString: Untagged
@@ -209,6 +210,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8bd44f649462524b815e32b0edac097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 2965659806187502600}
   cellType: 0
+  cellProperties: {fileID: 11400000, guid: 8c7df1c4b5969a94db3870529a004f80, type: 2}
+  visuals: {fileID: 5583521808476364725}
+--- !u!114 &5583521808476364725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2965659806430631499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9d3ba27518247418b8444adb1b83e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noteRenderer: {fileID: 2965659806187502600}
+  backgroundRenderer: {fileID: 2965659806154695726}
   cellProperties: {fileID: 11400000, guid: 8c7df1c4b5969a94db3870529a004f80, type: 2}

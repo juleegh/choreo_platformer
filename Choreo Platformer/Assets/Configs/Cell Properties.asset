@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b429e3e2a5afe94194931c70dc65bcf, type: 3}
   m_Name: Cell Properties
   m_EditorClassIdentifier: 
-  cellSprites:
+  cellProperties:
     reorderableList:
       canAdd: 1
       canRemove: 1
@@ -35,10 +35,10 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 1
-    _keyValues: 01000000000000000200000003000000
-    _keys: 01000000000000000200000003000000
+    _keyValues: 0000000001000000
+    _keys: 0000000001000000
     _values:
-    - {fileID: 2931179432178911882, guid: e80958a6053e1094aabe1f41d347ce3e, type: 3}
-    - {fileID: 6377739907931929317, guid: e80958a6053e1094aabe1f41d347ce3e, type: 3}
-    - {fileID: -3844867649347853136, guid: e80958a6053e1094aabe1f41d347ce3e, type: 3}
-    - {fileID: -2086547421020201182, guid: e80958a6053e1094aabe1f41d347ce3e, type: 3}
+    - cellSprite: {fileID: -3127448798928283936, guid: efd08924f14fb8346b483ee36e2f7a18, type: 3}
+      cellColor: {r: 0.9903418, g: 1, b: 0.5235849, a: 1}
+    - cellSprite: {fileID: -1649669319220892291, guid: efd08924f14fb8346b483ee36e2f7a18, type: 3}
+      cellColor: {r: 1, g: 0.6339008, b: 0.3066038, a: 1}

@@ -81,7 +81,7 @@ public class TempoCounter : MonoBehaviour
 
         for (float current = target; current < 1; current += target)
         {
-            if (CurrentBeatPercentage <= current + frequency * AcceptablePercentage && CurrentBeatPercentage >= current - frequency * AcceptablePercentage)
+            if (CurrentBeatPercentage <= current + AcceptablePercentage && CurrentBeatPercentage >= current - AcceptablePercentage)
             { 
                 return true;
             }

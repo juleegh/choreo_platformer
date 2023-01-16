@@ -28,7 +28,7 @@ public class CellVisuals : MonoBehaviour
 
     private void Update()
     {
-        float alpha = cellProperties.RequiredTempo(cellType) - TempoCounter.Instance.CurrentBeatPercentage;
+        float alpha = TempoCounter.Instance.CurrentBeatPercentage % cellProperties.RequiredTempo(cellType);
         Color color = inTempo;
         color.a = alpha;
         backgroundRenderer.color = color;

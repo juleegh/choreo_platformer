@@ -17,7 +17,11 @@ public class TempoCounter : MonoBehaviour
 
     public bool IsOnPreTempo { get { return preBeatFrame; } }
     public bool IsOnPostTempo { get { return postBeatFrame; } }
-    public bool IsOnTempo { get { return InsideAcceptableRange(WorldManager.Instance.GetRequiredTempo()); } }
+    public bool IsOnTempo(float target = 1f)
+    { 
+        return InsideAcceptableRange(target);
+    }
+
     public float TempoLength { get { return frequency; } }
     public float CurrentBeatPercentage {  get { return currentBeatDelay / frequency; } }
 

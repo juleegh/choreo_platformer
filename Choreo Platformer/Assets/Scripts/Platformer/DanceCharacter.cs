@@ -43,7 +43,7 @@ public class DanceCharacter : MonoBehaviour
             return;
         }
 
-        if (TempoCounter.Instance.IsOnTempo)
+        if (TempoCounter.Instance.IsOnTempo(WorldManager.Instance.GetRequiredTempo()))
         {
             currentMovement = transform.DOMove(transform.position + direction, TempoCounter.Instance.TempoLength * tempoPercentage).OnComplete(() => CheckDeath());
         }

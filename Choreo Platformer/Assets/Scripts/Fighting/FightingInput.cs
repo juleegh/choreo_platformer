@@ -14,17 +14,13 @@ public class FightingInput : MonoBehaviour
     [SerializeField] private FightingAction RightAction;
     [SerializeField] private FighterStats playerStats;
     private bool tempoUsed;
+    private bool tempoStarted;
+    private int temposNotUsed;
 
     void Update()
     {
-        if (tempoUsed)
-        {
-            if (!TempoCounter.Instance.IsOnTempo())
-            {
-                tempoUsed = false;
-            }
-        }
-        
+        CheckForPassingTempo();
+
         if (!TempoCounter.Instance.IsOnTempo())
         {
             return;
@@ -55,7 +51,34 @@ public class FightingInput : MonoBehaviour
             {
                 SelectedAction.ApplyActionEffects(playerStats);
                 tempoUsed = true;
+                temposNotUsed = 0;
             }
+        }
+    }
+
+    private void CheckForPassingTempo()
+    {
+        if (!tempoStarted && TempoCounter.Instance.IsOnTempo())
+        {
+            tempoStarted = true;
+            if (tempoUsed)
+            {
+                tempoUsed = false;
+            }
+            else
+            {
+                temposNotUsed++;
+                if (temposNotUsed >= 1)
+                {
+                    playerStats.RecoverStamina();
+                    temposNotUsed = 0;
+                }
+            }
+        }
+        
+        if (tempoStarted && !TempoCounter.Instance.IsOnTempo())
+        {
+            tempoStarted = false;
         }
     }
 }

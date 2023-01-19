@@ -702,14 +702,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b649f5d03286898478b543ec7ac9df9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UpInput: 119
-  DownInput: 115
-  LeftInput: 97
-  RightInput: 100
+  UpInput: 273
+  DownInput: 274
+  LeftInput: 276
+  RightInput: 275
   UpAction: {fileID: 11400000, guid: a7c92fc2f9d0dba49a4a4bd1d33a0ed1, type: 2}
   DownAction: {fileID: 11400000, guid: a7c92fc2f9d0dba49a4a4bd1d33a0ed1, type: 2}
   LeftAction: {fileID: 11400000, guid: a7c92fc2f9d0dba49a4a4bd1d33a0ed1, type: 2}
-  RightAction: {fileID: 11400000, guid: a7c92fc2f9d0dba49a4a4bd1d33a0ed1, type: 2}
+  RightAction: {fileID: 11400000, guid: df6f39c54ca4e054ba33b288b9d6c28f, type: 2}
   playerStats: {fileID: 599122915}
 --- !u!1001 &615557926
 PrefabInstance:
@@ -1676,7 +1676,7 @@ MonoBehaviour:
   UpAction: {fileID: 11400000, guid: a7c92fc2f9d0dba49a4a4bd1d33a0ed1, type: 2}
   DownAction: {fileID: 11400000, guid: a7c92fc2f9d0dba49a4a4bd1d33a0ed1, type: 2}
   LeftAction: {fileID: 11400000, guid: a7c92fc2f9d0dba49a4a4bd1d33a0ed1, type: 2}
-  RightAction: {fileID: 11400000, guid: a7c92fc2f9d0dba49a4a4bd1d33a0ed1, type: 2}
+  RightAction: {fileID: 11400000, guid: df6f39c54ca4e054ba33b288b9d6c28f, type: 2}
   playerStats: {fileID: 1540676591}
 --- !u!1 &1590856565
 GameObject:

@@ -10,11 +10,13 @@ public class FighterStats : MonoBehaviour
 
     private int health;
     private int stamina;
+    private int charge;
 
     public Action HealthChanged;
     public Action UsedStamina;
     public Action NotEnoughStamina;
 
+    public int CurrentCharge { get { return charge; } }
     public int CurrentHealth { get { return health; } }
     public int MaxHealth { get { return maxHealth; } }
     public int CurrentStamina { get { return stamina; } }
@@ -30,6 +32,15 @@ public class FighterStats : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        if (HealthChanged != null)
+        {
+            HealthChanged();
+        }
+    }
+
+    public void Heal(int quantity)
+    {
+        health += quantity;
         if (HealthChanged != null)
         {
             HealthChanged();
@@ -55,5 +66,22 @@ public class FighterStats : MonoBehaviour
             }
             return true;
         }
+    }
+
+    public void RecoverStamina()
+    {
+        if (stamina == maxStamina)
+            return;
+
+        stamina++;
+        if (UsedStamina != null)
+        {
+            UsedStamina();
+        }
+    }
+
+    public void SetCharge(int newCharge)
+    {
+        charge = newCharge;
     }
 }

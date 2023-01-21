@@ -12,6 +12,16 @@ public class FightingInput : MonoBehaviour
     [SerializeField] private FightingAction DownAction;
     [SerializeField] private FightingAction LeftAction;
     [SerializeField] private FightingAction RightAction;
+
+    public KeyCode Up { get { return UpInput; } }
+    public KeyCode Down { get { return DownInput; } }
+    public KeyCode Left { get { return LeftInput; } }
+    public KeyCode Right { get { return RightInput; } }
+    public FightingAction UpA { get { return UpAction; } }
+    public FightingAction DownA { get { return DownAction; } }
+    public FightingAction LeftA { get { return LeftAction; } }
+    public FightingAction RightA { get { return RightAction; } }
+
     [SerializeField] private FighterStats playerStats;
     private bool tempoUsed;
     private bool tempoStarted;
@@ -75,7 +85,7 @@ public class FightingInput : MonoBehaviour
                 }
             }
         }
-        
+
         if (tempoStarted && !TempoCounter.Instance.IsOnTempo())
         {
             tempoStarted = false;

@@ -41,10 +41,12 @@ public class FightingInput : MonoBehaviour
         {
             SelectedAction = UpAction;
         }
+        /*
         else if (Input.GetKeyDown(DownInput))
         {
             SelectedAction = DownAction;
         }
+        */
         else if (Input.GetKeyDown(LeftInput))
         {
             SelectedAction = LeftAction;

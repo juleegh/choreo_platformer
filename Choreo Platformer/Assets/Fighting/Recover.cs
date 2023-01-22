@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Recover")]
 public class Recover : FightingAction
 {
     [SerializeField] private int recoveredHP;

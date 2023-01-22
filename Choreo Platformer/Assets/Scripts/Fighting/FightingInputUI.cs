@@ -9,12 +9,13 @@ public class FightingInputUI : MonoBehaviour
     [SerializeField] private PlayerActionUI leftAction;
     [SerializeField] private PlayerActionUI rightAction;
     [SerializeField] private FightingInput relatedInput;
-    
+    [SerializeField] private FighterStats stats;
+
     void Start()
     {
-        upAction.Setup(relatedInput.Up, relatedInput.UpA.name);
-        downAction.Setup(relatedInput.Down, relatedInput.DownA.name);
-        leftAction.Setup(relatedInput.Left, relatedInput.LeftA.name);
-        rightAction.Setup(relatedInput.Right, relatedInput.RightA.name);
+        upAction.Setup(stats, relatedInput.Up, relatedInput.UpA.name);
+        downAction.Setup(stats, relatedInput.Down, relatedInput.DownA.name);
+        leftAction.Setup(stats, relatedInput.Left, relatedInput.LeftA.name);
+        rightAction.Setup(stats, relatedInput.Right, relatedInput.RightA.name);
     }
 }

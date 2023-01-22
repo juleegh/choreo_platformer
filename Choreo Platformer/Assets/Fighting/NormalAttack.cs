@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NormalAttack")]
 public class NormalAttack : FightingAction
 {
     [SerializeField] private int damage;

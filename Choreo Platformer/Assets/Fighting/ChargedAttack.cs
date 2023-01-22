@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChargedAttack : MonoBehaviour
+public class ChargedAttack : FightingAction
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private int damage;
+
+    public override bool IsCharged(FighterStats executer)
     {
-        
+        return executer.CurrentCharge > 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void ApplyActionEffects(FighterStats executer)
     {
-        
+        if (executer.CurrentCharge > 0)
+        {
+            FightManager.Instance.GetOppositePlayer(executer).TakeDamage(damage);
+            executer.SetCharge(0);
+        }
+        else
+        {
+            executer.SetCharge(1);
+        }
     }
 }

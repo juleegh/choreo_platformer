@@ -13,9 +13,9 @@ public class FightingInputUI : MonoBehaviour
 
     void Start()
     {
-        upAction.Setup(stats, relatedInput.Up, relatedInput.UpA.name);
-        downAction.Setup(stats, relatedInput.Down, relatedInput.DownA.name);
-        leftAction.Setup(stats, relatedInput.Left, relatedInput.LeftA.name);
-        rightAction.Setup(stats, relatedInput.Right, relatedInput.RightA.name);
+        upAction.Setup(stats, relatedInput.Up, relatedInput.UpA);
+        downAction.Setup(stats, relatedInput.Down, relatedInput.DownA);
+        leftAction.Setup(stats, relatedInput.Left, relatedInput.LeftA);
+        rightAction.Setup(stats, relatedInput.Right, relatedInput.RightA);
     }
 }

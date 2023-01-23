@@ -11,19 +11,21 @@ public class PlayerActionUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI description;
     private KeyCode associatedKey;
     private FighterStats stats;
+    private FightingAction associatedAction;
 
-    public void Setup(FighterStats fighter, KeyCode respectiveKey, string actionName)
+    public void Setup(FighterStats fighter, KeyCode respectiveKey, FightingAction actionName)
     {
         associatedKey = respectiveKey;
         key.text = associatedKey.ToString();
-        description.text = actionName;
+        associatedAction = actionName;
+        description.text = actionName.name;
         stats = fighter;
     }
     
     void Update()
     {
         background.color = Input.GetKey(associatedKey) ? Color.gray : Color.white;
-        if (stats.CurrentCharge > 0)
+        if (associatedAction.IsCharged(stats))
         {
             background.color = Color.yellow;
         }

@@ -51,17 +51,17 @@ public class AdultController : MonoBehaviour
         }
 
         Vector3 rotation = Vector3.zero;
-        if (Input.GetKey(RotateLeft))
+        if (Input.GetKeyDown(RotateLeft))
         {
             rotation -= Vector3.up;
         }
-        if (Input.GetKey(RotateRight))
+        if (Input.GetKeyDown(RotateRight))
         {
             rotation += Vector3.up;
         }
         if (rotation != Vector3.zero)
         {
-            transform.Rotate(rotation * rotSpeed * deltaTime);
+            transform.Rotate(rotation * rotSpeed);
         }
     }
 
@@ -69,7 +69,7 @@ public class AdultController : MonoBehaviour
     {
         if (Input.GetKey(TaskButton))
         {
-            // Perform task
+            taskManager.TryToExecuteTask(deltaTime);
         }
         else if (Input.GetKeyDown(GrabButton))
         {

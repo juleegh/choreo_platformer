@@ -5,13 +5,15 @@ using UnityEngine;
 public class AdultTaskManager : MonoBehaviour
 {
     private TaskItem currentItem;
+    [SerializeField] private float taskPerformSpeed = 0.33f;
 
-
-    public void TryToExecuteTask()
+    public void TryToExecuteTask(float deltaTime)
     {
-        //if (CurrentStation != null)
+        Debug.LogError(":/");
+        if (FrontStation() != null)
         {
-            // Execute task
+        Debug.LogError(":v");
+            FrontStation().PerformTask(taskPerformSpeed * deltaTime);
         }
     }
 

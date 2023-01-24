@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TaskItem : MonoBehaviour
 {
-    [SerializeField] private TaskType taskType;
+    [SerializeField] private TaskItemType itemType;
+    public TaskItemType ItemType {  get { return itemType; } }
 
     public WorldSurface CurrentHolder
     {
@@ -20,5 +21,10 @@ public class TaskItem : MonoBehaviour
             }
             return null;
         }
+    }
+
+    public void TaskCompleted(TaskType taskType)
+    {
+        itemType = TaskResults.TaskResult(itemType, taskType);
     }
 }

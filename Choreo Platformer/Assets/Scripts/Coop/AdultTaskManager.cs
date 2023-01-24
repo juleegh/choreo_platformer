@@ -9,10 +9,8 @@ public class AdultTaskManager : MonoBehaviour
 
     public void TryToExecuteTask(float deltaTime)
     {
-        Debug.LogError(":/");
         if (FrontStation() != null)
         {
-        Debug.LogError(":v");
             FrontStation().PerformTask(taskPerformSpeed * deltaTime);
         }
     }
@@ -42,12 +40,21 @@ public class AdultTaskManager : MonoBehaviour
             }
             currentItem.transform.SetParent(transform);
         }
+        else
+        {
+            WorldSurface surface = FrontSurface();
+            if (surface != null && !surface.IsEmpty)
+            {
+                currentItem = surface.Empty();
+                currentItem.transform.SetParent(transform);
+            }
+        }
     }
 
     private TaskItem FrontItem()
     {
         RaycastHit hit;
-        if (FrontRaycast(out hit))
+        if (FrontRaycast(out hit, LayerMask.GetMask("Item")))
         {
             return hit.collider.GetComponent<TaskItem>();
         }
@@ -57,7 +64,7 @@ public class AdultTaskManager : MonoBehaviour
     private WorldSurface FrontSurface()
     {
         RaycastHit hit;
-        if (FrontRaycast(out hit))
+        if (FrontRaycast(out hit, LayerMask.GetMask("Surface")))
         {
             return hit.collider.GetComponent<WorldSurface>();
         }
@@ -67,16 +74,16 @@ public class AdultTaskManager : MonoBehaviour
     private TaskStation FrontStation()
     {
         RaycastHit hit;
-        if (FrontRaycast(out hit))
+        if (FrontRaycast(out hit, LayerMask.GetMask("Surface")))
         {
             return hit.collider.GetComponent<TaskStation>();
         }
         return null;
     }
 
-    private bool FrontRaycast(out RaycastHit hit)
+    private bool FrontRaycast(out RaycastHit hit, int layerMask)
     {
-        bool result = Physics.Raycast(transform.position + Vector3.up*0.25f, transform.forward, out hit, 5);
+        bool result = Physics.Raycast(transform.position + Vector3.up*0.25f, transform.forward, out hit, 5, layerMask);
         //Debug.LogError(hit.collider);
         return result;
     }

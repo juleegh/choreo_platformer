@@ -31,16 +31,13 @@ public class TaskStation : WorldSurface
 
     public bool PerformTask(float percentageIncrease)
     {
-        Debug.LogError(0);
         if (itemOnTop == null)
         {
             return false;
         }
 
-        Debug.LogError(1);
         if (TaskResults.TaskResult(itemOnTop.ItemType, taskType) != itemOnTop.ItemType)
         {
-        Debug.LogError(2);
             percentage += percentageIncrease;
             UpdateProgressBar();
             if (percentage >= 1)

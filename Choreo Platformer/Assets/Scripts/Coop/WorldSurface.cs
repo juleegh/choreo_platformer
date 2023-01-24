@@ -14,7 +14,6 @@ public class WorldSurface : MonoBehaviour
         itemOnTop = item;
         itemOnTop.transform.SetParent(transform);
         itemOnTop.transform.localPosition = surfacePos;
-        GetComponent<Collider>().enabled = false;
         AfterItemPlaced();
     }
 
@@ -26,7 +25,6 @@ public class WorldSurface : MonoBehaviour
         TaskItem item = itemOnTop;
         itemOnTop.transform.SetParent(null);
         itemOnTop = null;
-        GetComponent<Collider>().enabled = true;
         AfterItemRemoved();
         return item;
     }

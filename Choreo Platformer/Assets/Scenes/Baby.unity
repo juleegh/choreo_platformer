@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 640084642}
   - component: {fileID: 640084641}
   - component: {fileID: 640084640}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -683,7 +683,7 @@ GameObject:
   - component: {fileID: 742400245}
   - component: {fileID: 742400248}
   - component: {fileID: 742400247}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -932,7 +932,7 @@ GameObject:
   - component: {fileID: 1343989042}
   - component: {fileID: 1343989044}
   - component: {fileID: 1343989043}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1086,7 +1086,7 @@ GameObject:
   - component: {fileID: 1855799138}
   - component: {fileID: 1855799137}
   - component: {fileID: 1855799136}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Diaper Station
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1403,9 +1403,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 640084639}
     m_Modifications:
+    - target: {fileID: 982904158202751654, guid: 778ecaf30cd903248a5b2c1a0f6c3996, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 982904158841995532, guid: 778ecaf30cd903248a5b2c1a0f6c3996, type: 3}
       propertyPath: m_Name
       value: Progress Bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 982904158841995532, guid: 778ecaf30cd903248a5b2c1a0f6c3996, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 982904158841995535, guid: 778ecaf30cd903248a5b2c1a0f6c3996, type: 3}
       propertyPath: m_Pivot.x

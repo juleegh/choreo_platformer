@@ -10,9 +10,12 @@ public class AdultController : MonoBehaviour
     [SerializeField] private KeyCode RightArrow;
     [SerializeField] private KeyCode GrabButton;
     [SerializeField] private KeyCode TaskButton;
+    [SerializeField] private KeyCode RotateLeft;
+    [SerializeField] private KeyCode RotateRight;
     [SerializeField] private AdultTaskManager taskManager;
 
     [SerializeField] private float speed = 1f;
+    [SerializeField] private float rotSpeed = 1f;
 
     void Update()
     {
@@ -44,7 +47,21 @@ public class AdultController : MonoBehaviour
 
         if (movement != Vector3.zero)
         {
-            transform.Translate(movement * speed * deltaTime);
+            transform.Translate(movement * speed * deltaTime, Space.World);
+        }
+
+        Vector3 rotation = Vector3.zero;
+        if (Input.GetKey(RotateLeft))
+        {
+            rotation -= Vector3.up;
+        }
+        if (Input.GetKey(RotateRight))
+        {
+            rotation += Vector3.up;
+        }
+        if (rotation != Vector3.zero)
+        {
+            transform.Rotate(rotation * rotSpeed * deltaTime);
         }
     }
 

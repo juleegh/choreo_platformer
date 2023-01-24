@@ -500,8 +500,11 @@ MonoBehaviour:
   RightArrow: 275
   GrabButton: 100
   TaskButton: 0
+  RotateLeft: 113
+  RotateRight: 101
   taskManager: {fileID: 597738535}
   speed: 3
+  rotSpeed: 1
 --- !u!4 &597738532
 Transform:
   m_ObjectHideFlags: 0

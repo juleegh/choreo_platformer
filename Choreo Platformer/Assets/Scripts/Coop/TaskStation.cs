@@ -8,7 +8,9 @@ public class TaskStation : WorldSurface
     [SerializeField] private TaskType taskType;
     [SerializeField] private Image progressBar;
     [SerializeField] private GameObject progressBarContainer;
-    [SerializeField] float percentage = 0;
+
+    public TaskType TaskType { get { return taskType; } }
+    float percentage = 0;
 
     private void Awake()
     {
@@ -31,21 +33,25 @@ public class TaskStation : WorldSurface
 
     public bool PerformTask(float percentageIncrease)
     {
-        if (itemOnTop == null)
+        TaskItemType taskItem = itemOnTop == null ? TaskItemType.None : itemOnTop.ItemType;
+
+        if (!TaskResults.ValidTask(taskItem, taskType))
         {
             return false;
         }
 
-        if (TaskResults.TaskResult(itemOnTop.ItemType, taskType) != itemOnTop.ItemType)
+        percentage += percentageIncrease;
+        UpdateProgressBar();
+
+        if (percentage >= 1)
         {
-            percentage += percentageIncrease;
-            UpdateProgressBar();
-            if (percentage >= 1)
+            if (itemOnTop != null && TaskResults.TaskResult(itemOnTop.ItemType, taskType) != itemOnTop.ItemType)
             {
                 itemOnTop.TaskCompleted(taskType);
             }
             return true;
         }
+
 
         return false;
     }

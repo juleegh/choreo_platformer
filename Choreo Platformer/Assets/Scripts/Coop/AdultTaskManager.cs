@@ -6,12 +6,16 @@ public class AdultTaskManager : MonoBehaviour
 {
     private TaskItem currentItem;
     [SerializeField] private float taskPerformSpeed = 0.33f;
+    [SerializeField] private AdultStats stats;
 
     public void TryToExecuteTask(float deltaTime)
     {
         if (FrontStation() != null)
         {
-            FrontStation().PerformTask(taskPerformSpeed * deltaTime);
+            if (FrontStation().PerformTask(taskPerformSpeed * deltaTime))
+            {
+                stats.ModifyStamina(TaskResults.TaskConsumption(FrontStation().TaskType));
+            }
         }
     }
 
@@ -83,7 +87,7 @@ public class AdultTaskManager : MonoBehaviour
 
     private bool FrontRaycast(out RaycastHit hit, int layerMask)
     {
-        bool result = Physics.Raycast(transform.position + Vector3.up*0.25f, transform.forward, out hit, 5, layerMask);
+        bool result = Physics.Raycast(transform.position + Vector3.up * 0.25f, transform.forward, out hit, 5, layerMask);
         //Debug.LogError(hit.collider);
         return result;
     }

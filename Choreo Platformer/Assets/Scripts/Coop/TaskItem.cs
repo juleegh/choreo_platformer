@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TaskItem : MonoBehaviour
+public class TaskItem : MonoBehaviour, TagHolder
 {
-    [SerializeField] private TaskItemType itemType;
+    [SerializeField] protected TaskItemType itemType;
     public TaskItemType ItemType {  get { return itemType; } }
 
     public WorldSurface CurrentHolder
@@ -26,5 +26,10 @@ public class TaskItem : MonoBehaviour
     public void TaskCompleted(TaskType taskType)
     {
         itemType = TaskResults.TaskResult(itemType, taskType);
+    }
+
+    public string GetTagContent()
+    {
+        return itemType.ToString();   
     }
 }

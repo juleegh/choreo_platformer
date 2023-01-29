@@ -4,7 +4,7 @@ public enum TaskType
     FeedBottle,
     Hold,
     WatchTV,
-    BuyGroceries,
+    BuyDiapers,
     PrepareBottles,
 }
 
@@ -15,7 +15,9 @@ public enum TaskItemType
     GrumpyBaby,
     HungryBaby,
     HappyBaby,
-    Work,
+    Money,
+    CleanDiaper,
+    MilkBottle,
 }
 
 public static class TaskResults

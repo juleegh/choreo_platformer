@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TaskStation : WorldSurface
+public class TaskStation : WorldSurface, TagHolder
 {
     [SerializeField] private TaskType taskType;
     [SerializeField] private Image progressBar;
@@ -60,5 +60,10 @@ public class TaskStation : WorldSurface
     {
         progressBarContainer.SetActive(percentage > 0 && percentage < 1);
         progressBar.fillAmount = percentage;
+    }
+
+    public string GetTagContent()
+    {
+        return taskType.ToString();
     }
 }

@@ -11,12 +11,13 @@ public class WorldVisualTag : MonoBehaviour
     void Start()
     {
         tagOwner = transform.parent.GetComponent<TagHolder>();
-        transform.localPosition = new Vector3(0, 1.5f, 0);
+        transform.localPosition = new Vector3(0, 2f, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.eulerAngles = Vector3.zero;
         sign.text = tagOwner.GetTagContent();
     }
 }

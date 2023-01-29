@@ -27,8 +27,11 @@ public class AdultTaskManager : MonoBehaviour
         }
         else if (currentItem != null && FrontSurface() != null)
         {
-            FrontSurface().Place(currentItem);
-            currentItem = null;
+            bool result = FrontSurface().TryToPlace(currentItem);
+            if (result)
+            {
+                currentItem = null;
+            }
         }
     }
 

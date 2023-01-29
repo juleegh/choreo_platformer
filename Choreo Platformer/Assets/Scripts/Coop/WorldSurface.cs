@@ -9,12 +9,26 @@ public class WorldSurface : MonoBehaviour
 
     public bool IsEmpty {  get { return itemOnTop == null; } }
 
-    public void Place(TaskItem item)
+    public bool TryToPlace(TaskItem item)
     {
-        itemOnTop = item;
-        itemOnTop.transform.SetParent(transform);
-        itemOnTop.transform.localPosition = surfacePos;
-        AfterItemPlaced();
+        if (itemOnTop != null)
+        {
+            bool result = itemOnTop.TryToPileUp(item.ItemType);
+            if (result)
+            {
+                Destroy(item.gameObject);
+                AfterItemPlaced();
+            }
+            return result;
+        }
+        else
+        {
+            itemOnTop = item;
+            itemOnTop.transform.SetParent(transform);
+            itemOnTop.transform.localPosition = surfacePos;
+            AfterItemPlaced();
+            return true;
+        }
     }
 
     public TaskItem Empty()

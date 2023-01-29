@@ -1,11 +1,12 @@
 public enum TaskType
 {
-    ChangeDiaper,
-    FeedBottle,
-    Hold,
-    WatchTV,
-    BuyDiapers,
-    PrepareBottles,
+    DiaperStation,
+    HighChair,
+    PlayStation,
+    TV,
+    DiaperStorage,
+    FoodDispenser,
+    WorkComputer,
 }
 
 public enum TaskItemType
@@ -16,8 +17,8 @@ public enum TaskItemType
     HungryBaby,
     HappyBaby,
     Money,
-    CleanDiaper,
-    MilkBottle,
+    Diaper,
+    BabyFood,
 }
 
 public static class TaskResults
@@ -27,9 +28,9 @@ public static class TaskResults
         switch (input)
         {
             case TaskItemType.None:
-                return task == TaskType.WatchTV;
+                return task == TaskType.TV;
             case TaskItemType.DirtyBaby:
-                return task == TaskType.ChangeDiaper;
+                return task == TaskType.DiaperStation;
         }
 
         return false;
@@ -50,12 +51,28 @@ public static class TaskResults
     {
         switch (task)
         {
-            case TaskType.ChangeDiaper:
+            case TaskType.DiaperStation:
                 return -0.15f;
-            case TaskType.WatchTV:
+            case TaskType.TV:
                 return 0.05f;
         }
 
         return 0f;
+    }
+
+    public static bool CanPileUp(TaskItemType input1, TaskItemType input2)
+    {
+        bool result = false;
+        switch (input1)
+        {
+            case TaskItemType.DirtyBaby:
+                result = input2 == TaskItemType.Diaper;
+                break;
+            case TaskItemType.HungryBaby:
+                result = input2 == TaskItemType.BabyFood;
+                break;
+        }
+
+        return result;
     }
 }

@@ -22,7 +22,7 @@ public class WorldSurface : MonoBehaviour
             bool result = itemOnTop.TryToPileUp(item.ItemType);
             if (result)
             {
-                Destroy(item.gameObject);
+                ItemDispenser.Instance.ReturnObject(item.gameObject);
                 AfterItemPlaced();
             }
             return result;

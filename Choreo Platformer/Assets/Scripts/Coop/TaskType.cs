@@ -24,25 +24,41 @@ public enum TaskItemType
 
 public static class TaskResults
 {
-    public static bool ValidTask(TaskItemType input, TaskType task)
+    public static bool ValidTask(TaskItemType input, TaskType task, TaskItemType input2)
     {
-        switch (input)
+        switch (task)
         {
-            case TaskItemType.None:
-                return task == TaskType.TV;
-            case TaskItemType.DirtyBaby:
-                return task == TaskType.DiaperStation;
+            case TaskType.DiaperStation:
+                return input == TaskItemType.DirtyBaby && input2 == TaskItemType.Diaper;
+            case TaskType.HighChair:
+                return input == TaskItemType.HungryBaby && input2 == TaskItemType.BabyFood;
+            case TaskType.PlayStation:
+                return input == TaskItemType.GrumpyBaby;
+            case TaskType.WorkComputer:
+            case TaskType.TV:
+                return input == TaskItemType.None;
+            case TaskType.FoodDispenser:
+            case TaskType.DiaperStorage:
+                return input == TaskItemType.Money;
         }
 
         return false;
     }
     
-    public static TaskItemType TaskResult(TaskItemType input, TaskType task)
+    public static TaskItemType TaskResult(TaskItemType input, TaskType task, TaskItemType input2)
     {
-        switch (input)
+        switch (task)
         {
-            case TaskItemType.DirtyBaby:
-                return TaskItemType.HappyBaby;
+            case TaskType.DiaperStation:
+            case TaskType.HighChair:
+            case TaskType.PlayStation:
+                    return TaskItemType.HappyBaby;
+            case TaskType.WorkComputer:
+                    return TaskItemType.Money;
+            case TaskType.FoodDispenser:
+                    return TaskItemType.BabyFood;
+            case TaskType.DiaperStorage:
+                    return TaskItemType.Diaper;
         }
 
         return input;
@@ -53,9 +69,18 @@ public static class TaskResults
         switch (task)
         {
             case TaskType.DiaperStation:
-                return -0.15f;
+                return -0.2f;
+            case TaskType.HighChair:
+                return -0.25f;
             case TaskType.TV:
                 return 0.05f;
+            case TaskType.PlayStation:
+                return 0.10f;
+            case TaskType.WorkComputer:
+                return -0.10f;
+            case TaskType.FoodDispenser:
+            case TaskType.DiaperStorage:
+                return -0.05f;
         }
 
         return 0f;

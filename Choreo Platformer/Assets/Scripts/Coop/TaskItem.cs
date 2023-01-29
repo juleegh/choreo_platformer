@@ -8,6 +8,13 @@ public class TaskItem : MonoBehaviour, TagHolder
     public TaskItemType ItemType {  get { return itemType; } }
 
     private TaskItemType secondItemType;
+    public TaskItemType SecondItemType { get { return secondItemType; } }
+
+    public void Reset(TaskItemType item)
+    {
+        itemType = item;
+        secondItemType = TaskItemType.None;
+    }
 
     public WorldSurface CurrentHolder
     {
@@ -27,7 +34,7 @@ public class TaskItem : MonoBehaviour, TagHolder
 
     public void TaskCompleted(TaskType taskType)
     {
-        itemType = TaskResults.TaskResult(itemType, taskType);
+        itemType = TaskResults.TaskResult(itemType, taskType, secondItemType);
         secondItemType = TaskItemType.None;
     }
 

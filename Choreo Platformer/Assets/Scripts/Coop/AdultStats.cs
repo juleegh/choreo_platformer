@@ -23,6 +23,14 @@ public class AdultStats : MonoBehaviour
     public void ModifyStamina(float value)
     {
         currentStamina += value;
+        if (currentStamina > 1)
+        {
+            currentStamina = 1;
+        }
+        if (currentStamina < 0)
+        {
+            currentStamina = 0;
+        }
         staminaBar.fillAmount = currentStamina;
     }
 }

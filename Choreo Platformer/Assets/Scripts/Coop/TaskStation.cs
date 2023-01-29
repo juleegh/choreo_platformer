@@ -34,8 +34,9 @@ public class TaskStation : WorldSurface, TagHolder
     public bool PerformTask(float percentageIncrease)
     {
         TaskItemType taskItem = itemOnTop == null ? TaskItemType.None : itemOnTop.ItemType;
+        TaskItemType taskItem2 = itemOnTop == null ? TaskItemType.None : itemOnTop.SecondItemType;
 
-        if (!TaskResults.ValidTask(taskItem, taskType))
+        if (!TaskResults.ValidTask(taskItem, taskType, taskItem2))
         {
             return false;
         }
@@ -45,10 +46,20 @@ public class TaskStation : WorldSurface, TagHolder
 
         if (percentage >= 1)
         {
-            if (itemOnTop != null && TaskResults.TaskResult(itemOnTop.ItemType, taskType) != itemOnTop.ItemType)
+            TaskItemType result = TaskResults.TaskResult(taskItem, taskType, taskItem2);
+            if (result != TaskItemType.None)
             {
-                itemOnTop.TaskCompleted(taskType);
+                if (itemOnTop != null)
+                {
+                    itemOnTop.TaskCompleted(taskType);
+                }
+                else
+                {
+                    TryToPlace(ItemDispenser.Instance.GetObject(result));
+                }
             }
+
+            percentage = 0f;
             return true;
         }
 

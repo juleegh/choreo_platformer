@@ -45,7 +45,6 @@ public class AdultTaskManager : MonoBehaviour
             {
                 currentItem.CurrentHolder.Empty();
             }
-            currentItem.transform.SetParent(transform);
         }
         else
         {
@@ -53,8 +52,12 @@ public class AdultTaskManager : MonoBehaviour
             if (surface != null && !surface.IsEmpty)
             {
                 currentItem = surface.Empty();
-                currentItem.transform.SetParent(transform);
             }
+        }
+        if (currentItem != null)
+        { 
+            currentItem.transform.SetParent(transform);
+            currentItem.transform.localPosition = new Vector3(0f, 0.65f, 0.8f);
         }
     }
 

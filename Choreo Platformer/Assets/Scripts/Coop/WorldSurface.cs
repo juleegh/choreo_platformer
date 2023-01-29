@@ -9,6 +9,12 @@ public class WorldSurface : MonoBehaviour
 
     public bool IsEmpty {  get { return itemOnTop == null; } }
 
+    private void Awake()
+    {
+        Vector3 pos = new Vector3(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), Mathf.RoundToInt(transform.position.z));
+        transform.position = pos;
+    }
+
     public bool TryToPlace(TaskItem item)
     {
         if (itemOnTop != null)

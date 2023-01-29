@@ -7,6 +7,7 @@ public enum TaskType
     DiaperStorage,
     FoodDispenser,
     WorkComputer,
+    Cradle,
 }
 
 public enum TaskItemType
